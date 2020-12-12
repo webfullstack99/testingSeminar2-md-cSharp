@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GeneralTest.Defines
@@ -25,5 +26,19 @@ namespace GeneralTest.Defines
             return result;
 
         }
+        public static string[] splitFileLine(String line)
+        {
+            //string[] result = Regex.Split(line, @"\t|\|{1,2}");
+            string[] result = Regex.Split(line, @"\t");
+            return result;
+        }
+
+        public static string convertToPureLink(String link)
+        {
+            String result = Regex.Replace(link, "\\?.*$", "");
+            return result.Trim();
+        }
+
     }
+
 }

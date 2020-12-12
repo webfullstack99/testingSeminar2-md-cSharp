@@ -11,7 +11,7 @@ namespace GeneralTest.PageMethods
     class Page
     {
         protected IWebDriver seleDriver;
-        protected int waitingTime = 4;
+        protected int waitingTime = 20;
 
         public Page(IWebDriver seleDriver)
         {
@@ -35,6 +35,12 @@ namespace GeneralTest.PageMethods
         public void closeBrowser()
         {
             seleDriver.Quit();
+        }
+
+        public void scrollDown(int value)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)seleDriver;
+            js.ExecuteScript($"window.scrollBy(0,{value})", "");
         }
 
     }

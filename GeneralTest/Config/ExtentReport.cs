@@ -70,6 +70,7 @@ namespace GeneralTest.Config
                     logstatus = Status.Pass;
                     break;
             }
+            //seleDriver.Quit();
             test.Log(logstatus, "Test ended with " + logstatus + stacktrace);
             test.Log(logstatus, "Snapshot below: " + test.AddScreenCaptureFromPath(screenShotPath));
             extent.Flush();

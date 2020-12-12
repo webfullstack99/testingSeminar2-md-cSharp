@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace GeneralTest.TestCases
     class SenDoTest : ExtentReport
     {
 
-        SenDoPage sendoPage;
+        protected SenDoPage sendoPage;
 
         [Test]
         public void filterDiscountProductTest()
@@ -36,89 +37,15 @@ namespace GeneralTest.TestCases
             }
         }
 
-        // SCRIPT ONE
-        [Test]
-        [Category("ScriptOne")]
-        public void scriptOne_testTwo()
+        protected String[] readFile(String filePath)
         {
-            int expectedQty = 5;
-            int expectedDiscount = 30;
-            runScriptOne(expectedQty, expectedDiscount);
+
+            // Read a text file line by line.  
+            string[] lines = File.ReadAllLines(filePath);
+            return lines;
         }
 
-        [Test]
-        [Category("ScriptOne")]
-        public void scriptOne_testOne()
-        {
-            int expectedQty = 10;
-            int expectedDiscount = 30;
-            runScriptOne(expectedQty, expectedDiscount);
-        }
-
-        [Test]
-        [Category("ScriptOne")]
-        public void scriptOne_testThree()
-        {
-            int expectedQty = 5;
-            int expectedDiscount = 20;
-            runScriptOne(expectedQty, expectedDiscount);
-        }
-
-        [Test]
-        [Category("ScriptOne")]
-        public void scriptOne_testFour()
-        {
-            int expectedQty = 8;
-            int expectedDiscount = 35;
-            runScriptOne(expectedQty, expectedDiscount);
-        }
-
-        // SCRIPT TWO
-        [Test]
-        [Category("ScriptTwo")]
-        public void scriptTwo_testOne()
-        {
-            sendoPage = new SenDoPage(getDriver());
-            sendoPage.navigateToHomePage();
-            sendoPage.enterSearch($"MacBook Pro 13\" 2020 Touch Bar 1.4GHz Core i5 256GB - Xám - 00694883");
-            sendoPage.clickSearchBtn();
-        }
-
-        // SCRIPT THREE
-        [Test]
-        [Category("ScriptThree")]
-        public void scriptThree_testOne()
-        {
-            // show info
-            sendoPage = new SenDoPage(getDriver());
-            sendoPage.navigateToHomePage();
-            sendoPage.closeAdPopup();
-        }
-
-
-        // SUPPORTED METHODS ===============
-        private void runScriptOne(int expectedQty, int expectedDiscount)
-        {
-            // show info
-            sendoPage = new SenDoPage(getDriver());
-            sendoPage.navigateToHomePage();
-
-            // get filtered list
-            List<Product> itemList = sendoPage.getDiscountProductList(expectedQty, expectedDiscount);
-
-            // print msg
-            String msg = getMessage(itemList, expectedQty, expectedDiscount);
-            Console.WriteLine(msg);
-
-
-            // print result
-            showProductListInfo(itemList);
-
-            // check test
-            logTestResult(itemList, expectedQty, expectedDiscount, msg);
-        }
-
-        private void logTestResult(List<Product> itemList, int expectedQty, int expectedDiscount, String msg)
+        protected void logTestResult(List<Product> itemList, int expectedQty, int expectedDiscount, String msg)
         {
 
             if (itemList.Count != expectedQty)
@@ -134,7 +61,7 @@ namespace GeneralTest.TestCases
             }
         }
 
-        private String getListHtmlInfo(List<Product> itemList)
+        protected String getListHtmlInfo(List<Product> itemList)
         {
             String result = "";
             for (int i = 0; i < itemList.Count; i++)
@@ -144,14 +71,14 @@ namespace GeneralTest.TestCases
             return result;
         }
 
-        private String getMessage(List<Product> itemList, int expectedQty, int expectedDiscount)
+        protected String getMessage(List<Product> itemList, int expectedQty, int expectedDiscount)
         {
             String msg = $"{itemList.Count} out of {expectedQty} (discount > {expectedDiscount}%)";
             msg = (itemList.Count == expectedQty) ? "Get success " + msg : msg;
             return msg;
         }
 
-        private void showProductListInfo(List<Product> itemList)
+        protected void showProductListInfo(List<Product> itemList)
         {
             foreach (Product item in itemList)
             {
