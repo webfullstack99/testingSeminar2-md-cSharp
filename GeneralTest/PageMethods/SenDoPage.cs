@@ -116,10 +116,9 @@ namespace GeneralTest.PageMethods
             return filteredItemList;
         }
 
-        public bool closeAdPopup()
+        public bool closeAdPopup(int waitingTime = 15)
         {
             bool status = false;
-            int waitingTime = 5;
             String adPopupCloseButtonClass = ".modal-dialog.wrapper_2P2b .close_3d2Y";
             String notificationPopupCloseButtonClass = ".modal-dialog.modalDialog_1Oud .closeBtn_2s1w";
 
@@ -267,7 +266,7 @@ namespace GeneralTest.PageMethods
                         {
                             if (i >= 1 && !isClosedAd)
                             {
-                                isClosedAd = closeAdPopup();
+                                isClosedAd = closeAdPopup(5);
                             }
                             waitForElementByCssSelector(qtyCaretSlt);
                             //moveToElement(qtyCaretSlt);
@@ -339,7 +338,7 @@ namespace GeneralTest.PageMethods
         {
             if (element.Location.Y > 200)
             {
-                ScrollTo(0, element.Location.Y - 100); // Make sure element is in the view but below the top navigation pane
+                ScrollTo(0, element.Location.Y - 200); // Make sure element is in the view but below the top navigation pane
             }
 
         }

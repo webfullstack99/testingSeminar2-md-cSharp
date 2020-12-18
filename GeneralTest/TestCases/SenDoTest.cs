@@ -16,27 +16,6 @@ namespace GeneralTest.TestCases
 
         protected SenDoPage sendoPage;
 
-        [Test]
-        public void filterDiscountProductTest()
-        {
-            sendoPage = new SenDoPage(getDriver());
-            sendoPage.navigateToHomePage();
-            sendoPage.moveToNavbar();
-            sendoPage.clickProductBranch();
-            sendoPage.checkFreeShipCheckbox();
-            sendoPage.chooseBestSeller();
-
-            // get filtered list
-            List<Product> itemList = sendoPage.getFilteredItemList();
-
-            // show info
-            Console.WriteLine("filtered: " + itemList.Count);
-            foreach (Product item in itemList)
-            {
-                Console.WriteLine(item.getInfo());
-            }
-        }
-
         protected String[] readFile(String filePath)
         {
 

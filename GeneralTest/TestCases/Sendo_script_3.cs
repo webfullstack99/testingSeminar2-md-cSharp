@@ -13,7 +13,7 @@ namespace GeneralTest.TestCases
         // SCRIPT THREE
         [Test]
         [Category("ScriptThree")]
-        public void scriptThree_testOne()
+        public void testOne()
         {
             // show info
             sendoPage = new SenDoPage(getDriver());

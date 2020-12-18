@@ -17,7 +17,7 @@ namespace GeneralTest.TestCases
 
         [Test]
         [Category("ScriptTwo")]
-        public void scriptTwo()
+        public void testOne()
         {
             sendoPage = new SenDoPage(getDriver());
             sendoPage.navigateToHomePage();

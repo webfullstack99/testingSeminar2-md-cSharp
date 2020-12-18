@@ -11,43 +11,38 @@ namespace GeneralTest.TestCases
 {
     class Sendo_script_1 : SenDoTest
     {
+
         [Test]
         [Category("ScriptOne")]
-        public void scriptOne_testTwo()
+        public void testOne()
         {
-            int expectedQty = 5;
-            int expectedDiscount = 30;
-            runScriptOne(expectedQty, expectedDiscount);
+            runTest(10, 30);
         }
 
         [Test]
         [Category("ScriptOne")]
-        public void scriptOne_testOne()
+        public void testTwo()
         {
-            int expectedQty = 10;
-            int expectedDiscount = 30;
-            runScriptOne(expectedQty, expectedDiscount);
+            runTest(5, 20);
         }
 
         [Test]
         [Category("ScriptOne")]
-        public void scriptOne_testThree()
-        {
-            int expectedQty = 5;
-            int expectedDiscount = 20;
-            runScriptOne(expectedQty, expectedDiscount);
-        }
-
-        [Test]
-        [Category("ScriptOne")]
-        public void scriptOne_testFour()
+        public void testThree()
         {
             int expectedQty = 8;
             int expectedDiscount = 35;
-            runScriptOne(expectedQty, expectedDiscount);
+            runTest(expectedQty, expectedDiscount);
         }
 
-        protected void runScriptOne(int expectedQty, int expectedDiscount)
+        [Test]
+        [Category("ScriptOne")]
+        public void testFour()
+        {
+            runTest(5, 45);
+        }
+
+        protected void runTest(int expectedQty, int expectedDiscount)
         {
             // show info
             sendoPage = new SenDoPage(getDriver());
